@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<PackageId>IdentityServer4.EntityFramework</PackageId>
+		<TargetFramework>net6.0</TargetFramework>
+		<Description>EntityFramework persistence layer for IdentityServer4</Description>
+		<AssemblyName>IdentityServer4.EntityFramework</AssemblyName>
+
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="IdentityServerEntityFrameworkBuilderExtensions.cs" />
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\EntityFramework.Storage\IdentityServer4.EntityFramework.Storage.csproj" />
+		<ProjectReference Include="..\IdentityServer4\IdentityServer4.csproj" />
+		
+	</ItemGroup>
+</Project>

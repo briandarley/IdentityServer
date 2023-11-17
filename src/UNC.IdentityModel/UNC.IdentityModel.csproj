@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Description>OpenID Connect &amp; OAuth 2.0 client library</Description>
+		<PackageId>UNC.IdentityModel</PackageId>
+		<AssemblyName>UNC.IdentityModel</AssemblyName>
+		<PackageTags>OAuth2;OAuth 2.0;OpenID Connect;Security;Identity;IdentityServer</PackageTags>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<LangVersion>latest</LangVersion>
+		<nullable>enable</nullable>
+		<!-- Enable Trimming Warnings to allow consumers to publish as trimmed -->
+		<IsTrimmable>true</IsTrimmable>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+
+
+
+
+	<!--Conditional Package references -->
+	<ItemGroup>
+		<PackageReference Include="System.Text.Json" Version="6.0.0" />
+	</ItemGroup>
+
+
+
+
+</Project>

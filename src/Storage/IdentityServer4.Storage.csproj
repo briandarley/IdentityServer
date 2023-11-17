@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+
+		<PackageId>IdentityServer4.Storage</PackageId>
+		<Description>Storage interfaces and models for IdentityServer4</Description>
+		<PackageTags>OAuth2;OAuth 2.0;OpenID Connect;Security;Identity;IdentityServer</PackageTags>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\UNC.IdentityModel\UNC.IdentityModel.csproj" />
+	</ItemGroup>
+
+</Project>

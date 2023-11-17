@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<PackageId>IdentityModel.AspNetCore.OAuth2Introspection</PackageId>
+		<Description>ASP.NET Core authentication handler to validate JWT and reference tokens from IdentityServer4</Description>
+		<PackageId>UNC.IdentityServer4.AccessTokenValidation</PackageId>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+
+
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\UNC.IdentityModel\UNC.IdentityModel.csproj" />
+	</ItemGroup>
+</Project>

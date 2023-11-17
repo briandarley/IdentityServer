@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<PackageId>IdentityServer4.AspNetIdentity</PackageId>
+		<TargetFramework>net6.0</TargetFramework>
+		<AssemblyName>IdentityServer4.AspNetIdentity</AssemblyName>
+	</PropertyGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\IdentityServer4\IdentityServer4.csproj" />
+	  
+	</ItemGroup>
+
+
+</Project>
