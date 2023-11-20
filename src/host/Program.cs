@@ -2,13 +2,24 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
 using System.Diagnostics;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using System.Threading.Tasks;
+using Host.Infrastructure.ConfigurationSetup;
+using Host.Infrastructure.DIRegistrations;
+using Host.Infrastructure.Middleware;
+using Host.Infrastructure.OpenIdConnectExtentions;
+using Microsoft.Extensions.DependencyInjection;
+using IdentityServer4.EntityFramework.Storage.DbContexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace IdentityServerHost
 {
@@ -40,7 +51,68 @@ namespace IdentityServerHost
             try
             {
                 Log.Information("Starting host...");
-                CreateHostBuilder(args).Build().Run();
+                var builder = WebApplication.CreateBuilder(args);
+                WebApplication app = null;
+                builder.Logging.ClearProviders();
+                var configuration = ConfigurationReader.GetConfiguration();
+
+                builder.Configuration.SetBasePath(Directory.GetCurrentDirectory());
+                builder.Configuration.AddConfiguration(configuration);
+
+
+
+                builder.Services.AddRazorPages();
+                builder.Services.RegisterDbContexts(configuration);
+                builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+                builder.Services.RegisterIdentityServerDefaults(configuration);
+#if (!DEBUG)
+                //builder.Services.RegisterIdentityServerDefaults(configuration);
+#endif
+#if (DEBUG)
+
+                //builder.Services.DebugRegisterIdentityServerDefaults(configuration);
+   
+#endif            
+
+                builder.Services.AddAuthentication().AddGoogleOpenIdConnect();
+
+
+                app = builder.Build();
+
+                /*
+                   public ProfileService(UserManager<TUser> userManager,
+                   IUserClaimsPrincipalFactory<TUser> claimsFactory)
+                 */
+
+                //app.UseAutoMapperInititialization();
+
+
+                if (app.Environment.IsDevelopment())
+                {
+                    app.UseDeveloperExceptionPage();
+                }
+
+
+                app.CongigureAppMiddleware();
+
+
+                app.MapControllers();
+                //var scope = app.Services.CreateScope();
+                //var dbContext = scope.ServiceProvider.GetService<PersistedGrantDbContext>();
+                //dbContext.Database.Migrate();
+                app.Run();
+               
+
+                //app.Run((s) =>
+                //{
+
+                //    var dbContext = s.RequestServices.GetService<PersistedGrantDbContext>();
+
+                //    return Task.CompletedTask;
+
+                //});
+                //CreateHostBuilder(args).Build().Run();
                 return 0;
             }
             catch (Exception ex)
@@ -54,12 +126,6 @@ namespace IdentityServerHost
             }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+
     }
 }

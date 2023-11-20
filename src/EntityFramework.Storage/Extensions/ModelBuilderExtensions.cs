@@ -13,7 +13,8 @@ namespace IdentityServer4.EntityFramework.Storage.Extensions
         private static EntityTypeBuilder<TEntity> ToTable<TEntity>(this EntityTypeBuilder<TEntity> entityTypeBuilder, TableConfiguration configuration)
             where TEntity : class
         {
-            return string.IsNullOrWhiteSpace(configuration.Schema) ? entityTypeBuilder.ToTable(new TableConfiguration(configuration.Name)) : entityTypeBuilder.ToTable(new TableConfiguration(configuration.Name, configuration.Schema));
+//            return string.IsNullOrWhiteSpace(configuration.Schema) ? entityTypeBuilder.ToTable(new TableConfiguration(configuration.Name)) : entityTypeBuilder.ToTable(new TableConfiguration(configuration.Name, configuration.Schema));
+            return string.IsNullOrWhiteSpace(configuration.Schema) ? entityTypeBuilder.ToTable(configuration.Name) : entityTypeBuilder.ToTable(configuration.Name, configuration.Schema);
         }
 
         /// <summary>

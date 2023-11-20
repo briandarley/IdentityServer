@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{6CAEB8ED-8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Migration Notes", "Data Migration Notes", "{40B042F3-8E72-48C9-A401-E568A9E8D215}"
 	ProjectSection(SolutionItems) = preProject
-		Migrations.log = Migrations.log
+		..\Migrations.log = ..\Migrations.log
 	EndProjectSection
 EndProject
 Global

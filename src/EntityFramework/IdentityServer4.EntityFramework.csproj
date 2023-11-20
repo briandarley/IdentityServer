@@ -8,10 +8,6 @@
 
 	</PropertyGroup>
 
-	<ItemGroup>
-	  <Compile Remove="IdentityServerEntityFrameworkBuilderExtensions.cs" />
-	</ItemGroup>
-
 
 
 	<ItemGroup>

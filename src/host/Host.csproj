@@ -17,23 +17,20 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.Certificate" Version="6.0.8" />
 		<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
 
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.14" />
 		
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.14" />
 		
 		
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\EntityFramework.Storage\IdentityServer4.EntityFramework.Storage.csproj" />
+	  <ProjectReference Include="..\EntityFramework\IdentityServer4.EntityFramework.csproj" />
 	  <ProjectReference Include="..\IdentityServer4.AspNetIdentity\IdentityServer4.AspNetIdentity.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Infrastructure\" />
 	</ItemGroup>
 
 </Project>
