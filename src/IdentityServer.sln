@@ -30,6 +30,33 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Migration Notes", "Dat
 		..\Migrations.log = ..\Migrations.log
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{A1981873-BF47-4807-803F-CD50BE11226E}"
+	ProjectSection(SolutionItems) = preProject
+		Docker-Compose-Readme.md = Docker-Compose-Readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql", "sql", "{7E919232-58AE-4017-8BFC-E01968BE6872}"
+	ProjectSection(SolutionItems) = preProject
+		prerequisate.txt = prerequisate.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{1D23C245-C610-4183-AEF2-75ACD200A6F0}"
+	ProjectSection(SolutionItems) = preProject
+		_docker-compose.yml = _docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "notes", "notes", "{CB1540D8-20D6-49D5-9315-64EBA290D961}"
+	ProjectSection(SolutionItems) = preProject
+		readme.txt = readme.txt
+	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C6C3C4E0-8C6A-47C6-B3E7-013B13C2B136}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "notes", "notes", "{011E1143-6CAA-4E55-8A91-2D97F498A4AA}"
+	ProjectSection(SolutionItems) = preProject
+		Access Tokens-Relationship with Api-Resources.md = Access Tokens-Relationship with Api-Resources.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +99,10 @@ Global
 		{349ADFE5-A3A8-4919-BBAE-A3B876C3DF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{349ADFE5-A3A8-4919-BBAE-A3B876C3DF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{349ADFE5-A3A8-4919-BBAE-A3B876C3DF99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C3C4E0-8C6A-47C6-B3E7-013B13C2B136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C3C4E0-8C6A-47C6-B3E7-013B13C2B136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C3C4E0-8C6A-47C6-B3E7-013B13C2B136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C3C4E0-8C6A-47C6-B3E7-013B13C2B136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +110,11 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6CAEB8ED-81BA-4F1D-8DAE-CE6FDF22222A} = {4C5B5679-3BA0-4531-8F88-1B31DEC70093}
 		{40B042F3-8E72-48C9-A401-E568A9E8D215} = {6CAEB8ED-81BA-4F1D-8DAE-CE6FDF22222A}
+		{A1981873-BF47-4807-803F-CD50BE11226E} = {6CAEB8ED-81BA-4F1D-8DAE-CE6FDF22222A}
+		{7E919232-58AE-4017-8BFC-E01968BE6872} = {6CAEB8ED-81BA-4F1D-8DAE-CE6FDF22222A}
+		{1D23C245-C610-4183-AEF2-75ACD200A6F0} = {4C5B5679-3BA0-4531-8F88-1B31DEC70093}
+		{CB1540D8-20D6-49D5-9315-64EBA290D961} = {4C5B5679-3BA0-4531-8F88-1B31DEC70093}
+		{011E1143-6CAA-4E55-8A91-2D97F498A4AA} = {6CAEB8ED-81BA-4F1D-8DAE-CE6FDF22222A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ACADE3E0-482A-45BD-8FCB-2E7EBD119241}

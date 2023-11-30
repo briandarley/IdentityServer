@@ -1,0 +1,31 @@
+--after adding sql and running sql container , create the necessary database
+
+/*
+create mssql database IdentityServer4_AspNetIdentity if it doesn't exist
+*/
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'IdentityServer4_AspNetIdentity')
+BEGIN
+	CREATE DATABASE IdentityServer4_AspNetIdentity
+END
+
+
+
+
+--run the migrations, i.e (from Package Manager, or use dotnet cli tools)
+update-database -context PersistedGrantDbContext; 
+update-database -context ConfigurationDbContext;
+update-database -context ApplicationDbContext;
+
+
+/* Will get an error after each update, not sure why that is, but at least from my end it creates the necessary tables within the database, 
+error will look something like, which for now I'll ignore
+
+Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+HostAbortedException: Exception of type 'Microsoft.Extensions.Hosting.HostFactoryResolver+HostingListener+HostAbortedException' was thrown.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at IdentityServerHost.Program.Main(String[] args) in F:\Projects\Sandbox\IdentityServer\IdentityServer4\src\host\Program.cs:line 81
+
+   */

@@ -1,0 +1,45 @@
+version: "3.4"
+services:
+    identity-server:
+        container_name: identity-server
+        image: bdarley/identity-server
+        build:
+            context: .
+            dockerfile: Host/Dockerfile
+        external_links:
+           - sql:sql
+        environment:
+            - ASPNETCORE_URLS=https://+:5503
+            - ASPNETCORE_ENVIRONMENT=Docker
+            - ASPNETCORE_URLS=https://+:443;http://+:80
+            - DEFAULT_CONNECTION=Server=sql,1433;Database=IdentityServer4_AspNetIdentity;User Id=sa; Password=4qsW5psH2MXY;TrustServerCertificate=true;MultipleActiveResultSets=true
+        env_file:
+            - "F:\\Projects\\Docker\\visual-studio-development\\env\\db-connections.env"
+            - "F:\\Projects\\Docker\\visual-studio-development\\env\\common.env"
+        volumes:
+            - F:/Projects/Docker/visual-studio-development/Certs/:/https/
+            - F:/Projects/Sandbox/IdentityServer/IdentityServer4/src/host/IdKeys/:/IdKeys 
+            - F:/Temp/Logs/DalData/:/var/log/myapp/
+            - type: bind
+              source: ./data-protection-keys
+              target: /root/.aspnet/DataProtection-Keys
+        ports:
+            - "5002:443"
+        networks:
+            - shared_network
+#    sql:
+#        container_name: sql
+#        image: mcr.microsoft.com/mssql/server:2022-latest
+#        environment:
+#            - ACCEPT_EULA=Y
+#            - SA_PASSWORD=4qsW5psH2MXY
+#        ports:
+#            - "1433:1433"
+#        networks:
+#            - shared_network
+
+networks:
+  shared_network:
+    driver: bridge
+    external: true
+  

@@ -1,0 +1,48 @@
+version: '3.4'
+services:
+  host:
+        image: bdarley/identity-server
+        container_name: identity-server
+        build:
+            context: .
+            dockerfile: host/Dockerfile
+        external_links:
+            - sql:sql
+        ports:
+            - "5002:443"
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Docker
+            - LOG_PATH=/var/log/identity-server.log
+        env_file:
+            - "F:\\Projects\\Docker\\visual-studio-development\\env\\db-connections.env"
+            - "F:\\Projects\\Docker\\visual-studio-development\\env\\common.env"
+        volumes:
+            - F:/Projects/Docker/visual-studio-development/Certs/:/https/
+            - F:/Projects/Sandbox/IdentityServer/IdentityServer4/src/host/IdKeys/:/IdKeys 
+            - F:/Temp/Logs/DalData/:/var/log/
+            - type: bind
+              source: ./data-protection-keys
+              target: /var/log/myapp/data-protection-keys
+        networks:
+            - backend
+            - shared_network
+
+
+
+#    sql:
+#        container_name: sql
+#        image: mcr.microsoft.com/mssql/server:2022-latest
+#        environment:
+#            - ACCEPT_EULA=Y
+#            - SA_PASSWORD=4qsW5psH2MXY
+#        ports:
+#            - "1433:1433"
+#        networks:
+#            - shared_network
+
+networks:
+  shared_network:
+    driver: bridge
+    external: true
+  backend:
+    driver: bridge

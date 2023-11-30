@@ -3,11 +3,22 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<ImplicitUsings>enable</ImplicitUsings>
+		
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<UserSecretsId>05f440c4-7fbd-41e7-a379-61d04591d6f7</UserSecretsId>
+		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+		
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.25" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.25" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
+		<!--<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />-->
 		<PackageReference Include="Serilog" Version="2.9.0" />
 		<PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
 		<PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 
+
 namespace IdentityServer4.Extensions
 {
     /// <summary>
@@ -41,6 +42,7 @@ namespace IdentityServer4.Extensions
             {
                 context.IssuedClaims.AddRange(context.FilterClaims(claims));
             }
+            
         }
 
         /// <summary>
