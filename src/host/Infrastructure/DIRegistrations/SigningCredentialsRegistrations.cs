@@ -18,19 +18,15 @@ namespace Host.Infrastructure.DIRegistrations
 
             try
             {
-
-                //TODO test this in docker
                 var contentRoot = configuration.GetValue<string>(WebHostDefaults.ContentRootKey) ?? "";
+                contentRoot = string.IsNullOrEmpty(contentRoot) ? "" : $"{contentRoot}/";
 
-                contentRoot = string.IsNullOrEmpty(contentRoot) ? "": $"{contentRoot}/";
-
-                Log.Logger.Warning($"Root Path {contentRoot}");
-                position = 1;
-                Log.Logger.Warning("Begin AddSigningCredential");
-                Log.Logger.Information("Retrieving directory information for ./");
-
-                position = 2;
-
+                if (OperatingSystem.IsLinux())
+                {
+                    contentRoot = "/";
+                }
+                
+                
                 //TODO fix this
                 var rsaCert = new X509Certificate2($"{contentRoot}IdKeys/idsrv.x509.rsa.p12", "aQd8WHpQ3wGn", X509KeyStorageFlags.MachineKeySet
                                                                                                                  | X509KeyStorageFlags.UserKeySet

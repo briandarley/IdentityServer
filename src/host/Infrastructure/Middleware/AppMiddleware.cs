@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace Host.Infrastructure.Middleware
 {
@@ -41,6 +42,8 @@ namespace Host.Infrastructure.Middleware
                     var ex = context.Features.Get<IExceptionHandlerFeature>();
                     if (ex != null)
                     {
+                        var consoleLogger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
+                        consoleLogger.Error(ex.Error.Message);
                         // Write the error message to the response
                         await context.Response.WriteAsync("An error occurred while processing your request.");
                     }

@@ -69,11 +69,8 @@ namespace Host.Infrastructure.DIRegistrations
                 .AddExtensionGrantValidator<NoSubjectExtensionGrantValidator>()
                 .AddJwtBearerClientAuthentication()
                 .AddAppAuthRedirectUriValidator()
-                //.AddProfileService<DefaultProfileService>()
                 //TODO, where is UserManager DI? Ans => <see cref="DbContextRegistrations.RegisterDbContexts"/>
                 .AddProfileService<ProfileService<ApplicationUser>>()
-                
-                //.AddProfileService<ProfileService>()
                 .AddCustomTokenRequestValidator<ParameterizedScopeTokenRequestValidator>()
                 .AddScopeParser<ParameterizedScopeParser>()
                 .AddMutualTlsSecretValidators();

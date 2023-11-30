@@ -2,24 +2,14 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
-using System;
 using System.Diagnostics;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Configuration;
-using System.IO;
-using System.Threading.Tasks;
 using Host.Infrastructure.ConfigurationSetup;
 using Host.Infrastructure.DIRegistrations;
 using Host.Infrastructure.Middleware;
 using Host.Infrastructure.OpenIdConnectExtentions;
-using Microsoft.Extensions.DependencyInjection;
-using IdentityServer4.EntityFramework.Storage.DbContexts;
-using Microsoft.EntityFrameworkCore;
 
 namespace IdentityServerHost
 {
@@ -29,24 +19,27 @@ namespace IdentityServerHost
         {
             Console.Title = "IdentityServer4.AspNetIdentity";
             Activity.DefaultIdFormat = ActivityIdFormat.W3C;
+            var logPath = Environment.GetEnvironmentVariable("LOG_PATH");
 
-            Log.Logger = new LoggerConfiguration()
+            var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
                 .MinimumLevel.Override("System", LogEventLevel.Warning)
                 .MinimumLevel.Override("Microsoft.AspNetCore.Authentication", LogEventLevel.Information)
                 .Enrich.FromLogContext()
-                //.WriteTo.File(@"identityserver4_log.txt")
-                // uncomment to write to Azure diagnostics stream
-                //.WriteTo.File(
-                //    @"D:\home\LogFiles\Application\identityserver.txt",
-                //    fileSizeLimitBytes: 1_000_000,
-                //    rollOnFileSizeLimit: true,
-                //    shared: true,
-                //    flushToDiskInterval: TimeSpan.FromSeconds(1))
-                .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Code)
-                .CreateLogger();
+                .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Code);
+            if (!string.IsNullOrEmpty(logPath))
+            {
+                loggerConfiguration = loggerConfiguration.WriteTo.File(
+                    logPath,
+                    fileSizeLimitBytes: 1_000_000,
+                    rollOnFileSizeLimit: true,
+                    shared: true,
+                    flushToDiskInterval: TimeSpan.FromSeconds(1));
+            }
+            
+            loggerConfiguration.CreateLogger();
 
             try
             {
