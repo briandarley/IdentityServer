@@ -9,7 +9,7 @@
 		<nullable>enable</nullable>
 		<!-- Enable Trimming Warnings to allow consumers to publish as trimmed -->
 		<IsTrimmable>true</IsTrimmable>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 	</PropertyGroup>
 
 

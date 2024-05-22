@@ -2,7 +2,7 @@
 docker run -d --rm -p 1433:1433 --network=shared_network --name sql -h sql -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=4qsW5psH2MXY" mcr.microsoft.com/mssql/server:2022-latest
 
 #must be at root, even though we're specifying the dockerfile full path
-docker build -f "F:\Projects\Sandbox\IdentityServer\IdentityServer4\src\host\Dockerfile" -t bdarley/identity-server .
+docker build -f "F:\Projects\UNC.V2\IdentityServer4\src\host\Dockerfile" -t bdarley/identity-server .
 
 docker run `
 		-d `
@@ -21,3 +21,7 @@ docker run `
 
 docker-compose -f "F:\Projects\Sandbox\IdentityServer\IdentityServer4\src\docker-compose.yml" build
 docker-compose -f "F:\Projects\Sandbox\IdentityServer\IdentityServer4\src\docker-compose.yml" -p restservices up -d 
+
+
+Reminder, in order to debug using docker-compose, ensure docker-compose is set as the startup project.
+

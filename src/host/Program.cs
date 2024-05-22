@@ -29,6 +29,7 @@ namespace IdentityServerHost
                 .MinimumLevel.Override("Microsoft.AspNetCore.Authentication", LogEventLevel.Information)
                 .Enrich.FromLogContext()
                 .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Code);
+            
             if (!string.IsNullOrEmpty(logPath))
             {
                 loggerConfiguration = loggerConfiguration.WriteTo.File(
@@ -47,6 +48,8 @@ namespace IdentityServerHost
                 var builder = WebApplication.CreateBuilder(args);
                 WebApplication app = null;
                 builder.Logging.ClearProviders();
+                builder.Logging.AddConsole(); // Adds the console logger
+                builder.Logging.AddDebug(); // Adds the debug logger
                 var configuration = ConfigurationReader.GetConfiguration();
 
                 builder.Configuration.SetBasePath(Directory.GetCurrentDirectory());
@@ -68,7 +71,7 @@ namespace IdentityServerHost
    
 #endif            
 
-                builder.Services.AddAuthentication().AddGoogleOpenIdConnect();
+                builder.Services.AddAuthentication();//.AddGoogleOpenIdConnect();
 
 
                 app = builder.Build();

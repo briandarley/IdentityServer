@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<Description>ASP.NET Core authentication handler to validate JWT and reference tokens from IdentityServer4</Description>
 		<PackageId>IdentityServer4.AccessTokenValidation</PackageId>
-		<TargetFramework>net6.0</TargetFramework>
+		
 	</PropertyGroup>
 
 
